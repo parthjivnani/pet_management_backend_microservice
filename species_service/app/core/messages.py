@@ -1,0 +1,8 @@
+INTERNAL_SERVER = "Something went wrong!"
+SPECIES_CREATED_SUCCESSFULLY = "Species created successfully"
+SPECIES_FETCHED_SUCCESSFULLY = "Species fetched successfully"
+SPECIES_UPDATED_SUCCESSFULLY = "Species updated successfully"
+SPECIES_DELETED_SUCCESSFULLY = "Species deleted successfully"
+SPECIES_NOT_FOUND = "Species not found"
+UNAUTHORIZED = "Unauthorized."
+FORBIDDEN = "Access denied."

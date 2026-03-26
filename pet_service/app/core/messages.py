@@ -1,0 +1,7 @@
+PET_CREATED_SUCCESSFULLY = "Pet created successfully"
+PET_FETCHED_SUCCESSFULLY = "Pet fetched successfully"
+PET_UPDATED_SUCCESSFULLY = "Pet updated successfully"
+PET_DELETED_SUCCESSFULLY = "Pet deleted successfully"
+PET_NOT_FOUND = "Pet not found"
+UNAUTHORIZED = "Unauthorized."
+FORBIDDEN = "Access denied."
