@@ -16,7 +16,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 def with_status(r: ApiResponse) -> JSONResponse:
-    return JSONResponse(status_code=r.statusCode, content=r.model_dump())
+    return JSONResponse(status_code=r.statusCode, content=r.model_dump(mode="json"))
 
 
 def get_current_user_email(authorization: str = Header(..., alias="Authorization")):

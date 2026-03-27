@@ -13,7 +13,7 @@ router = APIRouter(prefix="/pets", tags=["pets"])
 
 
 def with_status(r: ApiResponse) -> JSONResponse:
-    return JSONResponse(status_code=r.statusCode, content=r.model_dump())
+    return JSONResponse(status_code=r.statusCode, content=r.model_dump(mode="json"))
 
 
 @router.get("")

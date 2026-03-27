@@ -9,7 +9,7 @@ router = APIRouter(prefix="/adoptions", tags=["adoptions"])
 
 
 def with_status(r: ApiResponse) -> JSONResponse:
-    return JSONResponse(status_code=r.statusCode, content=r.model_dump())
+    return JSONResponse(status_code=r.statusCode, content=r.model_dump(mode="json"))
 
 
 @router.post("/", dependencies=[Depends(get_current_user)])
