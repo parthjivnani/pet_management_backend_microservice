@@ -16,6 +16,9 @@ from schema.pet import CreatePet, UpdatePet
 
 def doc_to_pet(doc: dict) -> dict:
     doc["id"] = str(doc.pop("_id"))
+    for key in ("createdOn", "modifiedOn"):
+        if isinstance(doc.get(key), datetime):
+            doc[key] = doc[key].isoformat()
     return doc
 
 

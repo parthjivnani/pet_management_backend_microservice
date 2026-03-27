@@ -1,9 +1,13 @@
-from fastapi import APIRouter, Depends
+import os
+import uuid
+from fastapi import APIRouter, Depends, File, Form, UploadFile
 from fastapi.responses import JSONResponse
 from controller.pet_controller import get_pets, get_pet_by_id, create_pet, update_pet, delete_pet
 from middlewares.auth import require_admin
 from schema.pet import CreatePet, UpdatePet
 from core.response import ApiResponse
+
+UPLOAD_DIR = "static/uploads"
 
 router = APIRouter(prefix="/pets", tags=["pets"])
 
@@ -32,7 +36,25 @@ async def get_one(id: str):
 
 
 @router.post("", dependencies=[Depends(require_admin)])
-async def create(body: CreatePet):
+async def create(
+    name: str = Form(...),
+    species: str = Form(...),
+    breed: str = Form(...),
+    age: int = Form(...),
+    description: str = Form(default=""),
+    image: UploadFile | None = File(None),
+):
+    image_url = ""
+    if image and image.filename:
+        ext = os.path.splitext(image.filename)[1]
+        filename = f"{uuid.uuid4()}{ext}"
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+        file_path = os.path.join(UPLOAD_DIR, filename)
+        contents = await image.read()
+        with open(file_path, "wb") as f:
+            f.write(contents)
+        image_url = f"/static/uploads/{filename}"
+    body = CreatePet(name=name, species=species, breed=breed, age=age, description=description, imageUrl=image_url)
     return with_status(await create_pet(body))
 
 
